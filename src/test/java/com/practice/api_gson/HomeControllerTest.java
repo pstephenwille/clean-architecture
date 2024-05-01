@@ -1,6 +1,6 @@
-package com.practice.ts.PracticeTwo;
+package com.practice.api_gson;
 
-import com.practice.ts.PracticeTwo.controllers.HomeController;
+import com.practice.api_gson.controllers.HomeController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

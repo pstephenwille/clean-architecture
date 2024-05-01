@@ -1,10 +1,10 @@
-package com.practice.ts.PracticeTwo;
+package com.practice.api_gson;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PracticeTwoApplicationTests {
+class APIGSONApplicationTests {
 
 	@Test
 	void contextLoads() {

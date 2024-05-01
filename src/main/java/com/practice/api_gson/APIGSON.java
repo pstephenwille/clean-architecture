@@ -1,13 +1,13 @@
-package com.practice.ts.PracticeTwo;
+package com.practice.api_gson;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PracticeTwoApplication {
+public class APIGSON {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PracticeTwoApplication.class, args);
+		SpringApplication.run(APIGSON.class, args);
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.practice.ts.PracticeTwo.models;
+package com.practice.api_gson.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
