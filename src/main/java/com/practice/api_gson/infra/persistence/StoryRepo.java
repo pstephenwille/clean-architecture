@@ -9,13 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Repository
 public class StoryRepo {
 
-    @Autowired
-    private StoryItemRepo storyItemRepo;
+    @Autowired()
+    public StoryItemRepo storyItemRepo;
+
+    public Iterable<StoryItemEntity> findAll() {
+        return storyItemRepo.findAll();
+    }
 
     public void saveAllStoryItems(List<StoryItemDto> allStoryItems) {
         Gson gson = new Gson();
