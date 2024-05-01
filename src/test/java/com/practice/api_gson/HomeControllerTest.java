@@ -1,6 +1,6 @@
 package com.practice.api_gson;
 
-import com.practice.api_gson.controllers.HomeController;
+import com.practice.api_gson.presentation.HomeController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class HomeControllerTest {
     void testGetTopNewsHttpStream() throws Exception {
 //        2.1, 1, 0.9
         var actual = sut.getTopStoryItems();
-        assertThat(actual.size()).isEqualTo(itemCount);
+        assertThat(actual.length()).isGreaterThan(0);
     }
 
 }

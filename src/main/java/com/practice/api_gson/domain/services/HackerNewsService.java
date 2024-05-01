@@ -1,7 +1,7 @@
-package com.practice.api_gson.services;
+package com.practice.api_gson.domain.services;
 
 import com.google.gson.GsonBuilder;
-import com.practice.api_gson.models.StoryItemDto;
+import com.practice.api_gson.application.StoryItemDto;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -22,7 +22,7 @@ public class HackerNewsService {
     private final int TOP_LIMIT = 10;
 
 
-    public List<StoryItemDto> getWithGson() throws Exception {
+    public List<StoryItemDto> getTopStoryItems() throws Exception {
         HttpClient client = HttpClient.newHttpClient();
 
         var idReq = HttpRequest.newBuilder()
@@ -47,7 +47,6 @@ public class HackerNewsService {
 
         return storyNewsItems;
     }
-
 
     private URI buildUri(Integer id) {
         try {
