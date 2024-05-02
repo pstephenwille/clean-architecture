@@ -9,4 +9,5 @@ public class CommentDto {
     String text;
     int[] kids;
     String parent;
+    String type;
 }
