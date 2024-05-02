@@ -15,5 +15,5 @@ public class CommentEntity {
     String text;
     @ElementCollection
     List<Integer> kids;
-    String parent;
+    int parent;
 }

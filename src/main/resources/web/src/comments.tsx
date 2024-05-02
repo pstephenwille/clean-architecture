@@ -1,15 +1,24 @@
 import React, {useEffect, useState} from 'react';
 
-interface CommentsProps{
-    parentId: number
-    kids: number[]
+interface CommentsProps {
+    storyId: number
 }
-export const Comments:React.FC<CommentsProps> = ({parentId, kids}) =>{
+
+export const Comments = ({storyId}: CommentsProps) => {
     const [comments, setComments] = useState([]);
 
+    const CommentsList = () => {
+        return (<div>woot</div>)
+    }
     useEffect(() => {
-        console.log('%c...kids', 'color:gold', kids)
+        fetch(`http://localhost:8080/comments/${storyId}`)
+            .then(resp => resp.json())
+            .then(data => setComments(data));
     }, [])
 
-    return (<div>Comments thread goes here</div>)
+    return (
+        <div>{(comments.length)
+            ? <CommentsList/>
+            : ''}
+        </div>)
 }

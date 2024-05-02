@@ -10,9 +10,9 @@ public class StoryItemEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    int story_id;
+    public int story_id;
     String by;
-    int[] kids;
+    public int[] kids;
     String title;
     String type;
 

@@ -1,6 +1,7 @@
 package com.practice.api_gson.domain.services;
 
 import com.google.gson.GsonBuilder;
+import com.practice.api_gson.application.CommentDto;
 import com.practice.api_gson.application.StoryItemDto;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +20,30 @@ import static java.net.http.HttpResponse.BodyHandlers.ofString;
 @Service
 public class HackerNewsService {
     private final String baseurl = "https://hacker-news.firebaseio.com/v0/";
-    private final int TOP_LIMIT = 10;
+    private final int TOP_LIMIT = 500;
+    private final HttpClient client = HttpClient.newHttpClient();
 
+//    @Autowired private CommentsRepoImpl commentsRepo;
 
-    public List<StoryItemDto> getTopStoryItems() throws Exception {
+    public List<CommentDto> getCommentsForStory(int[] kids, int storyId) {
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        var commentsHttp = Arrays.stream(kids)
+                .mapToObj(commentId -> buildUri("item/" + commentId + ".json"))
+                .map(HttpRequest::newBuilder)
+                .map(HttpRequest.Builder::build)
+                .toList();
+
+        var comments = commentsHttp.parallelStream()
+                .map(req -> makeRequest(req, client))
+                .map(resp -> new GsonBuilder().create().fromJson(resp.body(), CommentDto.class))
+                .toList();
+
+        return comments;
+    }
+
+    public List<StoryItemDto> getTopStories() throws Exception {
         HttpClient client = HttpClient.newHttpClient();
 
         var idReq = HttpRequest.newBuilder()
@@ -31,7 +52,7 @@ public class HackerNewsService {
         var idResp = client.send(idReq, ofString());
         var uris = Arrays.stream(new GsonBuilder().create().fromJson(idResp.body(), Integer[].class))
                 .limit(TOP_LIMIT)
-                .map(this::buildUri)
+                .map(id -> buildUri("item/" + id + ".json"))
                 .toList();
 
         List<HttpRequest> requests = uris.stream()
@@ -48,9 +69,9 @@ public class HackerNewsService {
         return storyNewsItems;
     }
 
-    private URI buildUri(Integer id) {
+    private URI buildUri(String path) {
         try {
-            return new URI(baseurl + "item/" + id + ".json");
+            return new URI(baseurl + path);
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }

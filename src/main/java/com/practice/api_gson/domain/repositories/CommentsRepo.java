@@ -6,5 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CommentRepo extends CrudRepository<CommentEntity, Integer> {
+public interface CommentsRepo extends CrudRepository<CommentEntity, Integer> {
+
 }

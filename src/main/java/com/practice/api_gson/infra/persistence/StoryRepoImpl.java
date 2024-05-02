@@ -6,20 +6,29 @@ import com.practice.api_gson.application.StoryItemDto;
 import com.practice.api_gson.domain.StoryItemEntity;
 import com.practice.api_gson.domain.repositories.StoryItemRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public class StoryRepo {
+public class StoryRepoImpl {
 
     @Autowired()
     public StoryItemRepo storyItemRepo;
 
-    public Iterable<StoryItemEntity> findAll() {
-        return storyItemRepo.findAll();
+    public Optional<StoryItemEntity> getById(int storyId) {
+        return storyItemRepo.findById(storyId);
+    }
+
+    public Iterable<StoryItemEntity> findAll(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<StoryItemEntity> items = storyItemRepo.findAll(pageable);
+
+        return items;
     }
 
     public void saveAllStoryItems(List<StoryItemDto> allStoryItems) {
