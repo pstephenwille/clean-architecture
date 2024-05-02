@@ -4,13 +4,11 @@ import com.google.gson.Gson;
 import com.practice.api_gson.domain.StoryItemEntity;
 import com.practice.api_gson.domain.services.HackerNewsService;
 import com.practice.api_gson.infra.persistence.StoryRepo;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.http.HttpResponse;
 
@@ -33,5 +31,9 @@ public class HomeController {
         return ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON).body(gsonJson);
     }
 
+    @GetMapping("/comments/{parentId}")
+    public ResponseEntity<String> getCommentsForParentItem(@PathVariable Integer parentId) throws Exception {
+        return ResponseEntity.status(200).body(parentId.toString());
+    }
 }
 

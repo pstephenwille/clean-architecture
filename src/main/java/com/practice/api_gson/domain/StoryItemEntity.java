@@ -12,8 +12,7 @@ public class StoryItemEntity {
     int id;
     int story_id;
     String by;
-    @ElementCollection
-    List<Integer> kids;
+    int[] kids;
     String title;
     String type;
 

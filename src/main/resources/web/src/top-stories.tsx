@@ -1,27 +1,29 @@
 import React, {useEffect, useState} from 'react';
 import {Comments} from "./comments";
 
+interface TopStoriesProps {
+    stories: any[]
+    title: string
+}
 
-export const TopStories: React.FC = () => {
-    const [stories, setStories] = useState([]);
+export const TopStories: React.FC<TopStoriesProps> = ({stories, title}, deprecatedLegacyContext) => {
 
     useEffect(() => {
-        fetch('http://localhost:8080/top-stories')
-            .then(resp => resp.json())
-            .then(data => setStories(data));
+        console.log('%c...top-stories', 'color:gold')
     }, [])
 
     return (
         <div>
+            <h4>{title}</h4>
             {stories.map((story: any, idx) => {
                 return (
-                    <div>
-                        <ul key={idx}>
-                            <li>Type: {story.type}</li>
-                            <li>Title: {story.title}</li>
-                            <li>By: {story.by}</li>
+                    <div key={idx}>
+                        <ul>
+                            <li><span className={'label'}>Type:</span> {story.type}</li>
+                            <li><span className={'label'}>Title:</span> {story.title}</li>
+                            <li><span className={'label'}>By:</span> {story.by}</li>
                         </ul>
-                        <Comments />
+                        <Comments parentId={story.id} kids={story.kids}/>
                     </div>)
             })}
         </div>
