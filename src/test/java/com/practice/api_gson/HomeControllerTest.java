@@ -1,6 +1,6 @@
 package com.practice.api_gson;
 
-import com.practice.api_gson.presentation.HomeController;
+import com.practice.api_gson.controllers_2.HomeController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

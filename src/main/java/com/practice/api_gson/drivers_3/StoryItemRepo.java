@@ -1,11 +1,9 @@
-package com.practice.api_gson.domain.repositories;
+package com.practice.api_gson.drivers_3;
 
-import com.practice.api_gson.domain.StoryItemEntity;
+import com.practice.api_gson.entities_0.StoryItemEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.RepositoryDefinition;
-import org.springframework.stereotype.Repository;
 
 public interface StoryItemRepo extends CrudRepository<StoryItemEntity, Integer> {
     Page<StoryItemEntity> findAll(Pageable pageable);

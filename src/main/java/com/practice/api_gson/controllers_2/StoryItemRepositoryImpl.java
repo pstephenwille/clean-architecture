@@ -1,32 +1,32 @@
-package com.practice.api_gson.infra.persistence;
+package com.practice.api_gson.controllers_2;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.practice.api_gson.application.StoryItemDto;
-import com.practice.api_gson.domain.StoryItemEntity;
-import com.practice.api_gson.domain.repositories.MyStoryItemRepo;
+import com.practice.api_gson.drivers_3.AppRepository;
+import com.practice.api_gson.drivers_3.StoryItemRepo;
+import com.practice.api_gson.entities_0.CommentEntity;
+import com.practice.api_gson.entities_0.StoryItemEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-import org.yaml.snakeyaml.error.MarkedYAMLException;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class StoryItemRepositoryImpl implements MyStoryItemRepo {
+public class StoryItemRepositoryImpl implements AppRepository {
 
-//    private final MyStoryItemRepo storyItemRepo;
+    private final StoryItemRepo storyItemRepo;
 
-//    @Autowired
-//    public StoryItemRepositoryImpl(MyStoryItemRepo storyItemRepo) {
-//        this.storyItemRepo = storyItemRepo;
-//    }
+    @Autowired
+    public StoryItemRepositoryImpl(StoryItemRepo storyItemRepo) {
+        this.storyItemRepo = storyItemRepo;
+    }
 
     @Override
-    public StoryItemEntity getByTitle(String title) {
+    public StoryItemEntity getStoryByTitle(String title) {
         return null;
     }
 
@@ -41,14 +41,25 @@ public class StoryItemRepositoryImpl implements MyStoryItemRepo {
         return storyItemRepo.findById(storyId);
     }
 
+
     @Override
-    public Iterable<StoryItemEntity> saveAllItems(List<StoryItemDto> allStoryItems) {
+    public Iterable<StoryItemEntity> saveAllStoryItems(List<StoryItemDto> allStoryItems) {
         Gson gson = new Gson();
         var allStoryEntities = allStoryItems.stream()
                 .map(gson::toJson)
                 .map(item -> new GsonBuilder().create().fromJson(item, StoryItemEntity.class))
                 .toList();
 
-        return storyItemRepo.saveAllItems(allStoryEntities);
+        return storyItemRepo.saveAll(allStoryEntities);
+    }
+
+    @Override
+    public Iterable<StoryItemEntity> saveAllStories(List<StoryItemEntity> stories) {
+        return null;
+    }
+
+    @Override
+    public Iterable<CommentEntity> saveAllComments(List<CommentEntity> comments) {
+        return null;
     }
 }

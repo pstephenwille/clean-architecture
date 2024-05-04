@@ -1,9 +1,6 @@
-package com.practice.api_gson.domain;
+package com.practice.api_gson.entities_0;
 
 import jakarta.persistence.*;
-import lombok.Data;
-
-import java.util.List;
 
 @Entity
 @Table(name = "comments")

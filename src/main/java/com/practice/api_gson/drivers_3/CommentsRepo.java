@@ -1,7 +1,7 @@
-package com.practice.api_gson.domain.repositories;
+package com.practice.api_gson.drivers_3;
 
 
-import com.practice.api_gson.domain.CommentEntity;
+import com.practice.api_gson.entities_0.CommentEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

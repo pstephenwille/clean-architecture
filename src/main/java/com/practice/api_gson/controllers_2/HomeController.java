@@ -1,8 +1,6 @@
-package com.practice.api_gson.presentation;
+package com.practice.api_gson.controllers_2;
 
 import com.google.gson.Gson;
-import com.practice.api_gson.application.services.ApiGsonService;
-import com.practice.api_gson.domain.HackerNewsProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +11,10 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class HomeController {
 
-    HackerNewsProvider hackerNewsProvider;
     ApiGsonService apiGsonService;
 
     @Autowired
-    public HomeController(HackerNewsProvider hackerNewsProvider, ApiGsonService apiGsonService) {
-        this.hackerNewsProvider = hackerNewsProvider;
+    public HomeController(ApiGsonService apiGsonService) {
         this.apiGsonService = apiGsonService;
     }
 

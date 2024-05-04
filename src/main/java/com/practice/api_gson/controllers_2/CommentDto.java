@@ -1,4 +1,4 @@
-package com.practice.api_gson.application;
+package com.practice.api_gson.controllers_2;
 
 //@Data
 public record CommentDto(int id,

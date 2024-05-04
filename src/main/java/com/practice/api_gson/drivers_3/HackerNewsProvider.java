@@ -1,7 +1,8 @@
-package com.practice.api_gson.domain;
+package com.practice.api_gson.drivers_3;
 
-import com.practice.api_gson.application.CommentDto;
-import com.practice.api_gson.application.StoryItemDto;
+
+import com.practice.api_gson.controllers_2.CommentDto;
+import com.practice.api_gson.controllers_2.StoryItemDto;
 
 import java.util.List;
 

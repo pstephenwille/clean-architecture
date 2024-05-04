@@ -1,10 +1,9 @@
-package com.practice.api_gson.infra.persistence;
+package com.practice.api_gson.controllers_2;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.practice.api_gson.application.CommentDto;
-import com.practice.api_gson.domain.CommentEntity;
-import com.practice.api_gson.domain.repositories.CommentsRepo;
+import com.practice.api_gson.drivers_3.CommentsRepo;
+import com.practice.api_gson.entities_0.CommentEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

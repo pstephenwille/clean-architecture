@@ -1,9 +1,7 @@
-package com.practice.api_gson.infra.gateways;
+package com.practice.api_gson.controllers_2;
 
 import com.google.gson.GsonBuilder;
-import com.practice.api_gson.application.CommentDto;
-import com.practice.api_gson.application.StoryItemDto;
-import com.practice.api_gson.domain.HackerNewsProvider;
+import com.practice.api_gson.drivers_3.HackerNewsProvider;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
