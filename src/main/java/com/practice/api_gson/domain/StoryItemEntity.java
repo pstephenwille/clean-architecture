@@ -10,14 +10,15 @@ public class StoryItemEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    public int story_id;
+    @Column(name="story_id")
+    public int storyId;
     String by;
     public int[] kids;
     String title;
     String type;
 
     @PrePersist
-    private void setStory_id() {
-        this.story_id = this.id;
+    private void setStoryId() {
+        this.storyId = this.id;
     }
 }

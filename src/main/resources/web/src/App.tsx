@@ -21,7 +21,6 @@ function App() {
 
                 {(pageable)
                     ? <TopStories pageable={pageable} title={'Hacker News Top Stories'}/>
-
                     :''}
 
                 <a

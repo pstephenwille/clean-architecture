@@ -1,8 +1,9 @@
-package com.practice.api_gson.domain.services;
+package com.practice.api_gson.infra.gateways;
 
 import com.google.gson.GsonBuilder;
 import com.practice.api_gson.application.CommentDto;
 import com.practice.api_gson.application.StoryItemDto;
+import com.practice.api_gson.domain.HackerNewsProvider;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -18,34 +19,14 @@ import java.util.Objects;
 import static java.net.http.HttpResponse.BodyHandlers.ofString;
 
 @Service
-public class HackerNewsService {
-    private final String baseurl = "https://hacker-news.firebaseio.com/v0/";
-    private final int TOP_LIMIT = 500;
+public class HackerNewsClient implements HackerNewsProvider {
+    //    private final int TOP_LIMIT = 500;
+//    private final String baseurl = "https://hacker-news.firebaseio.com/v0/";
     private final HttpClient client = HttpClient.newHttpClient();
 
-//    @Autowired private CommentsRepoImpl commentsRepo;
 
-    public List<CommentDto> getCommentsForStory(int[] kids, int storyId) {
-
-        HttpClient client = HttpClient.newHttpClient();
-
-        var commentsHttp = Arrays.stream(kids)
-                .mapToObj(commentId -> buildUri("item/" + commentId + ".json"))
-                .map(HttpRequest::newBuilder)
-                .map(HttpRequest.Builder::build)
-                .toList();
-
-        var comments = commentsHttp.parallelStream()
-                .map(req -> makeRequest(req, client))
-                .map(resp -> new GsonBuilder().create().fromJson(resp.body(), CommentDto.class))
-                .toList();
-
-        return comments;
-    }
-
+    @Override
     public List<StoryItemDto> getTopStories() throws Exception {
-        HttpClient client = HttpClient.newHttpClient();
-
         var idReq = HttpRequest.newBuilder()
                 .uri(new URI(baseurl + "topstories.json"))
                 .build();
@@ -69,6 +50,23 @@ public class HackerNewsService {
         return storyNewsItems;
     }
 
+
+    @Override
+    public List<CommentDto> getCommentsForStory(int[] kids) {
+        var commentsHttp = Arrays.stream(kids)
+                .mapToObj(commentId -> buildUri("item/" + commentId + ".json"))
+                .map(HttpRequest::newBuilder)
+                .map(HttpRequest.Builder::build)
+                .toList();
+
+        var comments = commentsHttp.parallelStream()
+                .map(req -> makeRequest(req, client))
+                .map(resp -> new GsonBuilder().create().fromJson(resp.body(), CommentDto.class))
+                .toList();
+
+        return comments;
+    }
+
     private URI buildUri(String path) {
         try {
             return new URI(baseurl + path);
@@ -85,5 +83,3 @@ public class HackerNewsService {
         }
     }
 }
-
-

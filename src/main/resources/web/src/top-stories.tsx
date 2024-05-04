@@ -9,7 +9,7 @@ export interface TopStoriesProps {
 
 export const TopStories = (props: TopStoriesProps) => {
     console.log('%c...top-stories', 'color:red', props.pageable)
-    const [commentsDisplayToggle, setCommentsDisplayToggle] = useState(false);
+    const [toggleComments, setToggleComments] = useState(false);
     const [commentsForStoryID, setCommentsForStoryID] = useState(NaN);
 
     const Navigation = () => (<div id={`pageNavigation`}>
@@ -38,14 +38,17 @@ export const TopStories = (props: TopStoriesProps) => {
                     {
                         props.pageable.content.map((story: any, idx: number) => {
                             return (
-                                <div key={idx}>
+                                <div key={idx} id={`story`}>
                                     <ul>
                                         <li><span className={'label'}>Type:</span> {story.type}</li>
                                         <li><span className={'label'}>Title:</span> {story.title}</li>
                                         <li><span className={'label'}>By:</span> {story.by}</li>
                                     </ul>
-                                    <button onClick={() => setCommentsForStoryID(story.id)}>Click for comments</button>
-                                    {(commentsForStoryID === story.id)
+                                    <button onClick={() => {
+                                        setCommentsForStoryID(story.id);
+                                        setToggleComments(!toggleComments)
+                                    }}>Click for comments</button>
+                                    {((commentsForStoryID === story.id) && toggleComments)
                                         ? <Comments storyId={story.id}/>
                                         : ''
                                     }

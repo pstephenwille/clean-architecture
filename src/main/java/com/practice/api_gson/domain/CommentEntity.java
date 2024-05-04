@@ -5,15 +5,15 @@ import lombok.Data;
 
 import java.util.List;
 
-@Data
 @Entity
 @Table(name = "comments")
 public class CommentEntity {
     @Id
+    @GeneratedValue
     int id;
     String by;
+    @Column(columnDefinition = "TEXT")
     String text;
-    @ElementCollection
-    List<Integer> kids;
+    int[] kids;
     int parent;
 }

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CommentsRepo extends CrudRepository<CommentEntity, Integer> {
-
+    Iterable<CommentEntity> findAllByParent(int parent);
 }
