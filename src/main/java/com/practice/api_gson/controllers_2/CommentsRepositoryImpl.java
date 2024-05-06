@@ -3,7 +3,7 @@ package com.practice.api_gson.controllers_2;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.practice.api_gson.drivers_3.CommentsRepo;
-import com.practice.api_gson.entities_0.CommentEntity;
+import com.practice.api_gson.drivers_3.DBCommentItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -23,13 +23,13 @@ public class CommentsRepositoryImpl {
     public void saveAllComments(List<CommentDto> commentDtos) {
         var commentEntities = commentDtos.stream()
                 .map(gson::toJson)
-                .map(item -> new GsonBuilder().create().fromJson(item, CommentEntity.class))
+                .map(item -> new GsonBuilder().create().fromJson(item, DBCommentItem.class))
                 .toList();
 
         commentsRepo.saveAll(commentEntities);
     }
 
-    public Iterable<CommentEntity> getCommentsForStory(int parentId) {
+    public Iterable<DBCommentItem> getCommentsForStory(int parentId) {
         return commentsRepo.findAllByParent(parentId);
     }
 

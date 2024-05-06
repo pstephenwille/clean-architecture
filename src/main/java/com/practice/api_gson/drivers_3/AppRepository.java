@@ -1,22 +1,22 @@
 package com.practice.api_gson.drivers_3;
 
+import com.practice.api_gson.controllers_2.CommentDto;
 import com.practice.api_gson.controllers_2.StoryItemDto;
-import com.practice.api_gson.entities_0.CommentEntity;
-import com.practice.api_gson.entities_0.StoryItemEntity;
+import com.practice.api_gson.drivers_3.DBStoryItem;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface AppRepository {
-    Iterable<StoryItemEntity> saveAllStories(List<StoryItemEntity> stories);
+    Iterable<DBStoryItem> saveAllStories(List<DBStoryItem> stories);
 
-    StoryItemEntity getStoryByTitle(String title);
+    DBStoryItem getStoryByTitle(String title);
 
-    Iterable<StoryItemEntity> getAllTopStories(int page, int size);
+    Iterable<DBStoryItem> getAllTopStories(int page, int size);
 
-    Optional<StoryItemEntity> getStoryById(int storyId);
+    Optional<DBStoryItem> getStoryById(int storyId);
 
-    Iterable<StoryItemEntity> saveAllStoryItems(List<StoryItemDto> allStoryItems);
+    Iterable<DBStoryItem> saveAllStoryItems(List<StoryItemDto> allStoryItems);
 
-    Iterable<CommentEntity> saveAllComments(List<CommentEntity> comments);
+    Iterable<DBCommentItem> saveAllComments(List<CommentDto> comments);
 }

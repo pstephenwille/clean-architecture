@@ -7,7 +7,7 @@ import com.practice.api_gson.controllers_2.StoryItemDto;
 import java.util.List;
 
 public interface HackerNewsProvider {
-    int TOP_LIMIT = 500;
+    int TOP_LIMIT = 10;
     String baseurl = "https://hacker-news.firebaseio.com/v0/";
 
     List<StoryItemDto> getTopStories() throws Exception;

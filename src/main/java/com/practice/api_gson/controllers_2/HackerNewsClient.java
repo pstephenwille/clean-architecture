@@ -18,8 +18,6 @@ import static java.net.http.HttpResponse.BodyHandlers.ofString;
 
 @Service
 public class HackerNewsClient implements HackerNewsProvider {
-    //    private final int TOP_LIMIT = 500;
-//    private final String baseurl = "https://hacker-news.firebaseio.com/v0/";
     private final HttpClient client = HttpClient.newHttpClient();
 
 

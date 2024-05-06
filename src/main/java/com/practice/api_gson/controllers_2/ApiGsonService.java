@@ -1,7 +1,7 @@
 package com.practice.api_gson.controllers_2;
 
-import com.practice.api_gson.entities_0.CommentEntity;
-import com.practice.api_gson.entities_0.StoryItemEntity;
+import com.practice.api_gson.drivers_3.DBCommentItem;
+import com.practice.api_gson.drivers_3.DBStoryItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ public class ApiGsonService {
     }
 
 
-    public Iterable<CommentEntity> getCommentsForStory(int storyId) {
+    public Iterable<DBCommentItem> getCommentsForStory(int storyId) {
         var storyEntity = storyItemRepo.getStoryById(storyId).get();
         var kids = storyEntity.kids;
         var parentId = storyEntity.storyId;
@@ -39,7 +39,7 @@ public class ApiGsonService {
     }
 
 
-    public Iterable<StoryItemEntity> getTopStories() {
+    public Iterable<DBStoryItem> getTopStories() {
         return storyItemRepo.getAllTopStories(0, 10);
     }
 }
