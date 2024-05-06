@@ -2,7 +2,7 @@ import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {Comments} from "./comments";
 
 export interface TopStoriesProps {
-    pageable: { content: any[], total: number, pageNumber: number }
+    pageable: { content: any[], total: number, pageNumber: number,  totalElements: number }
     title: string
 }
 
@@ -16,20 +16,15 @@ export const TopStories = (props: TopStoriesProps) => {
         <ul>
             <li> &laquo; </li>
             <li className={`label`}>Page: {props.pageable.pageNumber || '0'}</li>
-            <li className={`label`}>Total: {props.pageable.total}</li>
+            <li className={`label`}>Total: {props.pageable.totalElements}</li>
             <li></li>
             <li> &raquo; </li>
         </ul>
     </div>)
 
-
-    useLayoutEffect(() => {
-        console.log('%c...top-stories', 'color:gold', props.pageable.content.length)
-    }, [props.pageable.content.length])
-
     return (
         <div>
-            <h4>{props.title} - {props.pageable.total}</h4>
+            <h4>{props.title} - {props.pageable.totalElements}</h4>
 
             {(props.pageable.content && props.pageable.content.length) ?
                 <div>
@@ -43,6 +38,7 @@ export const TopStories = (props: TopStoriesProps) => {
                                         <li><span className={'label'}>Type:</span> {story.type}</li>
                                         <li><span className={'label'}>Title:</span> {story.title}</li>
                                         <li><span className={'label'}>By:</span> {story.by}</li>
+                                        <li><span className={'label'}>ID:</span> {story.id}</li>
                                     </ul>
                                     <button onClick={() => {
                                         setCommentsForStoryID(story.id);
