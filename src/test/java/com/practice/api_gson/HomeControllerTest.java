@@ -1,22 +1,25 @@
 package com.practice.api_gson;
 
+import com.practice.api_gson.controllers_2.ApiGsonService;
 import com.practice.api_gson.controllers_2.HomeController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
 
 @SpringBootTest
 public class HomeControllerTest {
 
-    /*sut system under test */
-    @Autowired
-    private HomeController sut;
+    @Mock
+    private ApiGsonService apiGsonService;
 
-    int itemCount = 10;
+    @InjectMocks
+    private HomeController sut;
 
     @BeforeEach
     public void setup() {
@@ -24,10 +27,12 @@ public class HomeControllerTest {
 
 
     @Test
-    void testGetTopNewsHttpStream() throws Exception {
-//        2.1, 1, 0.9
-//        var actual = sut.getTopStoryItems();
-//        assertThat(actual.length()).isGreaterThan(0);
+    void testGetTopStories() throws Exception {
+        when(apiGsonService.getTopStories()).thenReturn(null);
+
+        var actual = sut.getTopStoryItems();
+
+        assertThat(actual).isEqualTo(null);
     }
 
 }

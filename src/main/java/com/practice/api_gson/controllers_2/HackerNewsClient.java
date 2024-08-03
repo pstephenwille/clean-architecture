@@ -18,7 +18,7 @@ import static java.net.http.HttpResponse.BodyHandlers.ofString;
 
 @Service
 public class HackerNewsClient implements HackerNewsProvider {
-    private final HttpClient client = HttpClient.newHttpClient();
+    private HttpClient client = HttpClient.newHttpClient();
 
 
     @Override
